@@ -1,11 +1,3 @@
-// let getData = new Request('Task.JSON');
-// let listNumber = 0
-// let temp = localStorage.getItem('Task');
-// if (temp != null){
-//     taskListArray = JSON.parse(temp);
-// };
-
-
 class ActualTaskItem {
     constructor(id, title) {
 
@@ -21,9 +13,10 @@ function viewableTaskList(e) {
     console.log(e);
     document.getElementById('enter').onkeydown = function (event) {
         if (event.keyCode == 13) {
-            // alert('5');
+           
             var obj = new ActualTaskItem(taskListArray.length + 1, document.getElementById('enter').value);
             let list = document.createElement('li');
+            list.setAttribute('id', taskListArray.length)
             list.textContent = e.target.value;
             document.getElementById('displayTask').appendChild(list);
             taskListArray.push(obj);
@@ -35,7 +28,7 @@ function viewableTaskList(e) {
 }
 
 
-// Store JSON Data in the Array
+// JSON Data in the Array
 function getTask() {
     let data = localStorage.getItem('Task');
     console.log(data)
@@ -54,24 +47,39 @@ function getTask() {
     }
 
 }
+// This will update the list that you see on screen
 function updateDisplay() {
     document.getElementById('displayTask').innerHTML = '';
     for (let j = 0; j < taskListArray.length; j++) {
 
         let list = document.createElement('li')
         list.textContent = taskListArray[j].title;
+        list.setAttribute('id', taskListArray[j].id)
         document.getElementById('displayTask').appendChild(list);
 
-        // document.getElementById('Task').innerHTML = '';
+
     }
 }
 
-// function display(getTask){
-//    localStorage.getItem('Task') = temp;
+// Shows all current Task
+function showAll(e) {
+}
 
-// }
+// Deletes all Task
+function deleteAll(e) {
+    console.log(deleteAll);
+    localStorage.clear();
+    taskListArray = [];
+    document.getElementById('displayTask').innerHTML = '';
 
-// function delete(){
+}
 
 
-// }
+
+
+
+// Shows all Complete Task that have not been deleted
+function completeTask(e) {
+
+
+}
