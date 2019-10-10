@@ -114,4 +114,5 @@ function init() {
     viewTaskList();
     viewableTaskList();
     getTask();
+    updateDisplay();
 }

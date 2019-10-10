@@ -1,9 +1,9 @@
-let getData = new Request('Task.JSON');
+// let getData = new Request('Task.JSON');
 // let listNumber = 0
-let temp = localStorage.getItem('Task');
-if (temp != null){
-    taskListArray = JSON.parse(temp);
-};
+// let temp = localStorage.getItem('Task');
+// if (temp != null){
+//     taskListArray = JSON.parse(temp);
+// };
 
 
 class ActualTaskItem {
@@ -22,50 +22,53 @@ function viewableTaskList(e) {
     document.getElementById('enter').onkeydown = function (event) {
         if (event.keyCode == 13) {
             // alert('5');
-            new ActualTaskItem (taskListArray.length,document.getElementById('enter').value);
-                let list = document.createElement('li')
-                list.textContent = e.target.value;
-                displayTask.appendChild(list);
-                taskListArray.push(document.getElementById('enter').value);
-                localStorage.setItem('Task', JSON.stringify(taskListArray));
-
+            var obj = new ActualTaskItem(taskListArray.length + 1, document.getElementById('enter').value);
+            let list = document.createElement('li');
+            list.textContent = e.target.value;
+            document.getElementById('displayTask').appendChild(list);
+            taskListArray.push(obj);
+            localStorage.setItem('Task', JSON.stringify(taskListArray));
             document.getElementById('enter').value = '';
 
         };
     }
 }
-// I don't know what this does yet but i put it here
-localStorage.setItem('key', 'value')
+
 
 // Store JSON Data in the Array
 function getTask() {
-let data = localStorage.getItem('Task');
-console.log(data)
+    let data = localStorage.getItem('Task');
+    console.log(data)
     if (data.length > 0) {
-        taskListArray = JSON.parse(data);
-        for (let i = 0; i < taskListArray.length; i++){
-
-            let list = document.createElement('li')
-            list.textContent = taskListArray[i].value;
-            displayTask.appendChild(list);
-            
-            
-            document.getElementById('Task').value = '';
+        data = JSON.parse(data);
+        for (let i = 0; i < data.length; i++) {
+            var obj = new ActualTaskItem(data[i].id, data[i].title);
+            taskListArray.push(obj);
         }
     }
     else {
 
         localStorage.setItem('Task', JSON.stringify(taskListArray));
-         data = JSON.parse(localStorage.getItem('task'));
-        
+        data = JSON.parse(localStorage.getItem('Task'));
+
     }
 
 }
+function updateDisplay() {
+    document.getElementById('displayTask').innerHTML = '';
+    for (let j = 0; j < taskListArray.length; j++) {
 
+        let list = document.createElement('li')
+        list.textContent = taskListArray[j].title;
+        document.getElementById('displayTask').appendChild(list);
+
+        // document.getElementById('Task').innerHTML = '';
+    }
+}
 
 // function display(getTask){
 //    localStorage.getItem('Task') = temp;
-   
+
 // }
 
 // function delete(){
