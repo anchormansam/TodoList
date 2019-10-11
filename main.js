@@ -5,6 +5,8 @@ A.setAttribute('class', 'container text-center display-4');
 let taskListArray = [];
 let updatedTaskList = [];
 
+let liID = 0;
+
 
 
 function viewTaskList() {
@@ -46,10 +48,12 @@ function viewTaskList() {
     displayTask1.innerHTML = "";
     
     // Main Task Display Col
-    let displayTask2 = document.createElement('ul');
-    displayTask2.setAttribute('class', 'col-6');
-    displayTask2.setAttribute('id', 'displayTask')
+    let displayTask2 = document.createElement('div');
+    displayTask2.setAttribute('class', 'col-6 ');
+    displayTask2.setAttribute('id', 'displayTask');
+    // displayTask2.setAttribute('style', 'b');
     displayTask2.innerHTML = "";
+    displayTask2.addEventListener('click', completeTask)
     
     let displayTask3 = document.createElement('div');
     displayTask3.setAttribute('class', 'col-3');
@@ -65,19 +69,26 @@ function viewTaskList() {
     
     // View All Button
     let actionButton1 = document.createElement('button');
-    actionButton1.setAttribute('class', 'col-2');
+    actionButton1.setAttribute('class', 'col-2 btn btn-secondary btn-lg');
     actionButton1.innerHTML = "All";
+    actionButton1.setAttribute('id', 'Show');
+    actionButton1.addEventListener('click', showAll)
+
     
     
     // Completed Button
     let actionButton2 = document.createElement('button');
-    actionButton2.setAttribute('class', 'col-2');
-    actionButton2.innerHTML = "Completed"
+    actionButton2.setAttribute('class', 'col-2 btn btn-secondary btn-lg');
+    actionButton2.innerHTML = "Completed";
+    actionButton2.setAttribute('id', 'DONE');
+    actionButton2.addEventListener('click', completeTask)
 
-    // Delete Button
+    // DeleteALL Button
     let actionButton3 = document.createElement('button');
-    actionButton3.setAttribute('class', 'col-2');
-    actionButton3.innerHTML = "Delete";
+    actionButton3.setAttribute('class', 'col-2 btn btn-secondary btn-lg');
+    actionButton3.innerHTML = "Delete All";
+    actionButton3.setAttribute('id', 'Delete');
+    actionButton3.addEventListener('click', deleteAll)
     
     let actionEmptyCol2 = document.createElement('div');
     actionEmptyCol2.setAttribute('class', 'col-3');
@@ -114,4 +125,5 @@ function init() {
     viewTaskList();
     viewableTaskList();
     getTask();
+    updateDisplay();
 }
