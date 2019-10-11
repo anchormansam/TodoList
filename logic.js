@@ -13,7 +13,7 @@ function viewableTaskList(e) {
     console.log(e);
     document.getElementById('enter').onkeydown = function (event) {
         if (event.keyCode == 13) {
-
+           
             var obj = new ActualTaskItem(taskListArray.length + 1, document.getElementById('enter').value);
             let list = document.createElement('button');
             list.setAttribute('id', taskListArray.length)
@@ -86,10 +86,9 @@ function deleteAll(e) {
 
 
 
+
 // Shows all Complete Task that have not been deleted
 function completeTask(e) {
-
-    console.log(e)
     if (confirm('Are you sure you completed this task?')) {
         let clickedOn = taskListArray.filter(task => task.id == e.target.id);
         console.log(clickedOn);
