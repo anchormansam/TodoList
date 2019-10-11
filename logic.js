@@ -87,12 +87,18 @@ function deleteAll(e) {
 
 // Shows all Complete Task that have not been deleted
 function completeTask(e) {
-    let data = localStorage.getItem('Task');
-    console.log(data)
     if (confirm('Are you sure you completed this task?')) {
-        completed.textContent = true;
+        let clickedOn = taskListArray.filter(task => task.id == e.target.id);
+        console.log(clickedOn);
+        clickedOn[0].completed = true;
+        // console.log(taskListArray);
+        document.getElementById(clickedOn[0].id).setAttribute('style', 'text-decoration: line-through;');
+        // displayTask2.innerHTML.setProperty('', 'line-through');
+
     } else {
         // Do nothing!
     }
 
 }
+
+

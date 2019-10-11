@@ -48,8 +48,8 @@ function viewTaskList() {
     displayTask1.innerHTML = "";
     
     // Main Task Display Col
-    let displayTask2 = document.createElement('button');
-    displayTask2.setAttribute('class', 'col-6 btn btn-primary btn-sm');
+    let displayTask2 = document.createElement('div');
+    displayTask2.setAttribute('class', 'col-6 ');
     displayTask2.setAttribute('id', 'displayTask');
     // displayTask2.setAttribute('style', 'b');
     displayTask2.innerHTML = "";
