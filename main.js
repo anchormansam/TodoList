@@ -53,7 +53,7 @@ function viewTaskList() {
     displayTask2.setAttribute('id', 'displayTask');
     // displayTask2.setAttribute('style', 'b');
     displayTask2.innerHTML = "";
-    displayTask2.addEventListener('click', completeTask)
+    // displayTask2.addEventListener('click', completeTask)
     
     let displayTask3 = document.createElement('div');
     displayTask3.setAttribute('class', 'col-3');
