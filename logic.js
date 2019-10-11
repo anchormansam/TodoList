@@ -15,7 +15,7 @@ function viewableTaskList(e) {
         if (event.keyCode == 13) {
            
             var obj = new ActualTaskItem(taskListArray.length + 1, document.getElementById('enter').value);
-            let list = document.createElement('li');
+            let list = document.createElement('button');
             list.setAttribute('id', taskListArray.length)
             list.textContent = e.target.value;
             document.getElementById('displayTask').appendChild(list);
@@ -52,7 +52,7 @@ function updateDisplay() {
     document.getElementById('displayTask').innerHTML = '';
     for (let j = 0; j < taskListArray.length; j++) {
 
-        let list = document.createElement('li')
+        let list = document.createElement('button')
         list.textContent = taskListArray[j].title;
         list.setAttribute('id', taskListArray[j].id)
         document.getElementById('displayTask').appendChild(list);
@@ -61,8 +61,15 @@ function updateDisplay() {
     }
 }
 
+// Mark Task as Completed 
+function taskComplete(){
+
+}
+
+
 // Shows all current Task
 function showAll(e) {
+
 }
 
 // Deletes all Task
@@ -80,6 +87,12 @@ function deleteAll(e) {
 
 // Shows all Complete Task that have not been deleted
 function completeTask(e) {
-
+    let data = localStorage.getItem('Task');
+    console.log(data)
+    if (confirm('Are you sure you completed this task?')) {
+        completed.textContent = true;
+    } else {
+        // Do nothing!
+    }
 
 }
