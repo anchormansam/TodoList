@@ -1,3 +1,5 @@
+var totalTask = 0;
+
 class ActualTaskItem {
     constructor(id, title) {
 
@@ -23,6 +25,7 @@ function viewableTaskList(e) {
             taskListArray.push(obj);
             localStorage.setItem('Task', JSON.stringify(taskListArray));
             document.getElementById('enter').value = '';
+
 
         };
     }
@@ -53,9 +56,11 @@ function updateDisplay() {
     document.getElementById('displayTask').innerHTML = '';
     for (let j = 0; j < taskListArray.length; j++) {
 
-        let list = document.createElement('button')
+        let list = document.createElement('li');
+        list.setAttribute('type', 'button');
+        list.setAttribute('class', 'btn-block;');
         list.textContent = taskListArray[j].title;
-        list.setAttribute('id', taskListArray[j].id)
+        list.setAttribute('id', taskListArray[j].id);
         document.getElementById('displayTask').appendChild(list);
 
 
@@ -63,13 +68,67 @@ function updateDisplay() {
 }
 
 // Mark Task as Completed 
-function taskComplete() {
+function taskComplete(e) {
+    for (var i = 0; i < taskListArray.length; i++) {
+        console.log(e.target.id);
+        if (taskListArray[i].completed == false) {
+            let btn = document.getElementById(i);
+            btn.setAttribute('style', 'visibility: hidden;')
+        }
+        if (taskListArray[i].completed == true) {
+            let btn = document.getElementById(i);
+            btn.setAttribute('style', 'visibility: visible;')
+        }
+        // if (deleteAll(e)) {
+        //     // localStorage.removeItem();
+        //     // taskListArray = [];
+        //     // document.getElementById('displayTask').innerHTML = '';
+        
+        // }
+        else {
 
+        }
+    }
 }
 
 
+// Shows all Complete Task that have not been deleted
+function completeTask(e) {
+    if (confirm('Did you complete this task?')) {
+        let clickedOn = taskListArray.filter(task => {
+
+            console.log(task.id)
+            console.log(e.target.id)
+            return task.id == e.target.id
+        });
+        console.log(clickedOn);
+        clickedOn[0].completed = true;
+        console.log(taskListArray);
+        document.getElementById(clickedOn[0].id).setAttribute('style', 'text-decoration: line-through;');
+        // displayTask2.innerHTML.setProperty('', 'line-through');
+
+    } else {
+        // Do nothing!
+    }
+
+}
+
 // Shows all current Task
-function showAll(e) {
+function taskRemaining(e) {
+    for (var i = 0; i < taskListArray.length; i++) {
+        console.log(e.target.id);
+        if (taskListArray[i].completed == false) {
+            let btn = document.getElementById(i);
+            btn.setAttribute('style', 'visibility: visible;')
+        }
+        if (taskListArray[i].completed == true) {
+            let btn = document.getElementById(i);
+            btn.setAttribute('style', 'visibility: hidden;')
+        }
+        else {
+
+        }
+    }
 
 }
 
@@ -87,25 +146,6 @@ function deleteAll(e) {
 
 
 
-// Shows all Complete Task that have not been deleted
-function completeTask(e) {
-    if (confirm('Are you sure you completed this task?')) {
-        let clickedOn = taskListArray.filter(task => {
 
-            console.log(task.id)
-            console.log(e.target.id)
-            return  task.id == e.target.id
-        });
-        console.log(clickedOn);
-        clickedOn[0].completed = true;
-        // console.log(taskListArray);
-        document.getElementById(clickedOn[0].id).setAttribute('style', 'text-decoration: line-through;');
-        // displayTask2.innerHTML.setProperty('', 'line-through');
-
-    } else {
-        // Do nothing!
-    }
-
-}
 
 
